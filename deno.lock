@@ -2,7 +2,8 @@
   "version": "3",
   "packages": {
     "specifiers": {
-      "npm:ebnf": "npm:ebnf@1.9.1"
+      "npm:ebnf": "npm:ebnf@1.9.1",
+      "npm:ebnf@1.9.1": "npm:ebnf@1.9.1"
     },
     "npm": {
       "ebnf@1.9.1": {
@@ -11,5 +12,10 @@
       }
     }
   },
-  "remote": {}
+  "remote": {},
+  "workspace": {
+    "dependencies": [
+      "npm:ebnf@1.9.1"
+    ]
+  }
 }

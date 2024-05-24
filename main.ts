@@ -7,11 +7,25 @@ const grammar = decoder.decode(Deno.readFileSync("./codeowners.bnf"));
 const RULES = Grammars.W3C.getRules(grammar);
 const codeownersParser = new Parser(RULES, { debug: false });
 
+/**
+ * Represents a single rule in a CODEOWNERS file
+ * @property glob - The glob pattern to match files
+ * @property owners - The owners of the files
+ */
 type CodeownersRule = {
   glob: string;
   owners: string[];
 };
 
+/**
+ * Represents a single section in a CODEOWNERS file
+ * @property name - The name of the section
+ * @property label - The label of the section
+ * @property optional - Whether the section is optional
+ * @property approvers - The number of approvers required
+ * @property owners - The owners of the section
+ * @property rules - The rules of the section
+ */
 type CodeownersSection = {
   name: string;
   label?: string;
@@ -20,7 +34,6 @@ type CodeownersSection = {
   owners: string[];
   rules: CodeownersRule[];
 };
-
 
 const newDefaultSection = () => ({
   name: "default",
@@ -44,7 +57,9 @@ const processOwners = (owners: CodeownersOwner[]): string[] => {
  * @param codeownersString
  * @returns CodeownersSection[]
  */
-export const parseCodeowners = (codeownersString: string): CodeownersSection[] => {
+export const parseCodeowners = (
+  codeownersString: string,
+): CodeownersSection[] => {
   const ast = codeownersParser.getAST(codeownersString) as Codeowners;
   const sections: CodeownersSection[] = [];
 
@@ -62,14 +77,14 @@ export const parseCodeowners = (codeownersString: string): CodeownersSection[] =
             owners: owners ? processOwners(owners.children) : [],
           };
           if (sections.length === 0) {
-            sections.push(newDefaultSection())
+            sections.push(newDefaultSection());
           }
           sections.at(-1)?.rules.push(rule);
 
           break;
         }
         case "section": {
-          const newSection = newDefaultSection()
+          const newSection = newDefaultSection();
           for (const sectionItem of item.children) {
             switch (sectionItem.type) {
               case "optional":
