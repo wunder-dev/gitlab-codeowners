@@ -117,7 +117,8 @@ export const parseCodeowners = (
 };
 
 if (import.meta.main) {
-  const testFile = Deno.readFileSync("./samples/codeowners");
-  const sections = parseCodeowners(decoder.decode(testFile));
-  console.log(sections);
+  // const testFile = Deno.readFileSync("./samples/codeowners");
+  // const sections = parseCodeowners(decoder.decode(testFile));
+  const [defaultSection] = parseCodeowners('* @owner1 @owner2')
+  console.log(defaultSection.rules);
 }
