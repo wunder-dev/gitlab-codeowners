@@ -1,0 +1,15 @@
+{
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "npm:ebnf": "npm:ebnf@1.9.1"
+    },
+    "npm": {
+      "ebnf@1.9.1": {
+        "integrity": "sha512-uW2UKSsuty9ANJ3YByIQE4ANkD8nqUPO7r6Fwcc1ADKPe9FRdcPpMl3VEput4JSvKBJ4J86npIC2MLP0pYkCuw==",
+        "dependencies": {}
+      }
+    }
+  },
+  "remote": {}
+}
