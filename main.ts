@@ -1,8 +1,38 @@
 import { Grammars, Parser } from "ebnf";
 import type { Codeowners, CodeownersOwner } from "./types.ts";
-import {dirname} from '@std/path'
 
-const grammar = await Deno.readTextFile(`${dirname(import.meta.url)}/codeowners.bnf`);
+const grammar = `
+codeowners ::= NEWLINE? line (NEWLINE line?)*
+line ::= (rule | section )? comment?
+
+rule ::= file (SPACE owners SPACE?)?
+file ::= GLOB
+owners ::= owner (SPACE owner)*
+owner ::= (AT name ("/" subgroup)*) | email | WORD
+name ::= [a-zA-Z0-9._-]+
+subgroup ::= name
+email ::= EMAIL_ADDRESS AT EMAIL_DOMAIN
+EMAIL_ADDRESS ::= [a-zA-Z0-9._-]+
+EMAIL_DOMAIN ::= [a-zA-Z0-9._-]+
+
+comment ::= SPACE? HASH SPACE? text?
+text ::= TEXT
+
+section ::= optional? "[" SPACE? name (SPACE label)? SPACE? "]" ("[" approvals "]")? (SPACE owners)?
+approvals ::= INTEGER 
+label ::= WORD (SPACE WORD)*
+optional ::= "^"
+
+AT ::= "@"
+HASH ::= "#"
+TEXT ::= (([#x20-#x21] | [#x23-#x5B] | [#x5D-#xFFFF]))*
+INTEGER ::= [0-9]+
+GLOB ::= ([a-zA-Z0-9-_*./] | "\\" SPACE | "\\" HASH )*
+WORD ::= [a-zA-Z0-9-*_]+
+
+SPACE ::= [#x20#x09]+
+NEWLINE ::= [\n]+
+`
 const RULES = Grammars.W3C.getRules(grammar);
 const codeownersParser = new Parser(RULES, { debug: false });
 
