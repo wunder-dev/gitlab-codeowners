@@ -6,6 +6,7 @@
     "test": "deno run --allow-read main.ts"
   },
   "imports": {
+    "@std/path": "jsr:@std/path@^1.0.7",
     "ebnf": "npm:ebnf@1.9.1"
   },
   "license": "MIT"

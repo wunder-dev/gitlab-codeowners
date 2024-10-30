@@ -1,20 +1,24 @@
 {
-  "version": "3",
-  "packages": {
-    "specifiers": {
-      "npm:ebnf": "npm:ebnf@1.9.1",
-      "npm:ebnf@1.9.1": "npm:ebnf@1.9.1"
-    },
-    "npm": {
-      "ebnf@1.9.1": {
-        "integrity": "sha512-uW2UKSsuty9ANJ3YByIQE4ANkD8nqUPO7r6Fwcc1ADKPe9FRdcPpMl3VEput4JSvKBJ4J86npIC2MLP0pYkCuw==",
-        "dependencies": {}
-      }
+  "version": "4",
+  "specifiers": {
+    "jsr:@std/path@^1.0.7": "1.0.7",
+    "npm:ebnf@*": "1.9.1",
+    "npm:ebnf@1.9.1": "1.9.1"
+  },
+  "jsr": {
+    "@std/path@1.0.7": {
+      "integrity": "76a689e07f0e15dcc6002ec39d0866797e7156629212b28f27179b8a5c3b33a1"
     }
   },
-  "remote": {},
+  "npm": {
+    "ebnf@1.9.1": {
+      "integrity": "sha512-uW2UKSsuty9ANJ3YByIQE4ANkD8nqUPO7r6Fwcc1ADKPe9FRdcPpMl3VEput4JSvKBJ4J86npIC2MLP0pYkCuw=="
+    }
+  },
   "workspace": {
     "dependencies": [
+      "jsr:@std/path@*",
+      "jsr:@std/path@^1.0.7",
       "npm:ebnf@1.9.1"
     ]
   }
