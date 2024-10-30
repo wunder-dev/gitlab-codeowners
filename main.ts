@@ -1,7 +1,8 @@
 import { Grammars, Parser } from "ebnf";
 import type { Codeowners, CodeownersOwner } from "./types.ts";
 import {fromFileUrl, dirname} from '@std/path'
-console.log(`${dirname(fromFileUrl(import.meta.url))}/codeowners.bnf`)
+
+console.log(import.meta.url)
 const grammar = Deno.readTextFileSync(`${dirname(fromFileUrl(import.meta.url))}/codeowners.bnf`);
 const RULES = Grammars.W3C.getRules(grammar);
 const codeownersParser = new Parser(RULES, { debug: false });
