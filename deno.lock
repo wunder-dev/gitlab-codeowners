@@ -17,7 +17,6 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@std/path@*",
       "jsr:@std/path@^1.0.7",
       "npm:ebnf@1.9.1"
     ]
