@@ -1,6 +1,7 @@
-import { Grammars, Parser } from "npm:ebnf@1.9.1";
+import { Grammars, Parser } from "ebnf";
 import type { Codeowners, CodeownersOwner } from "./types.ts";
 
+console.log(Deno.cwd());
 const grammar = Deno.readTextFileSync(`codeowners.bnf`);
 
 const RULES = Grammars.W3C.getRules(grammar);
