@@ -7,5 +7,6 @@
   },
   "imports": {
     "ebnf": "npm:ebnf@1.9.1"
-  }
+  },
+  "license": "MIT"
 }
